@@ -1,4 +1,4 @@
-# 📊 OrderFlow Dashboard
+# 📊OrderFlow Dashboard
 
 ## ¿Qué es?
 
@@ -54,7 +54,7 @@ order-flow-dashboard/
 │   └── order.types.ts      # Definiciones de tipos TypeScript
 │
 ├── utils/
-│   ├── functional.helpers.ts  # ⭐ Funciones funcionales (map, filter, reduce, currying)
+│   ├── functional.helpers.ts  #  Funciones (map, filter, reduce, currying)
 │   └── order.helpers.ts       # Lógica de negocio para procesar pedidos
 │
 ├── public/                 # Archivos estáticos
@@ -187,20 +187,8 @@ const statusTotals = orders.reduce<Record<string, { count: number; total: number
 
 ### 📍 **Ubicación Exacta:**
 - `utils/functional.helpers.ts` - Utilidades funcionales puras
-- `utils/order.helpers.ts` - Composición de funciones funcionales
+- `utils/order.helpers.ts` - Composición de funciones 
 - `app/page.tsx` - Uso de `useMemo` y composición
-
----
-
-## 🚀 Stack Tecnológico
-
-| Tecnología | Versión | Propósito |
-|-----------|---------|----------|
-| **Next.js** | 16.2.1 | Framework React con SSR |
-| **React** | 19.2.4 | Biblioteca UI |
-| **TypeScript** | 5.x | Tipado estático |
-| **Tailwind CSS** | 4.x | Estilos utility-first |
-| **ESLint** | 9.x | Linting y calidad de código |
 
 ---
 
@@ -280,7 +268,3 @@ npm run dev
 6. **Ve qué ciudad genera más ingresos** → Consulta métrica "Top Ciudad"
 
 ---
-
-**Versión:** 1.0.0  
-**Autor:** Proyecto Educativo - Fundamentos Web  
-**Licencia:** MIT
