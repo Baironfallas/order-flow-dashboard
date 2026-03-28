@@ -6,11 +6,7 @@ import {
   SalesByStatus,
 } from "@/types/order.types";
 import {
-  applyTax,
   applyDiscount,
-  filterByCity,
-  filterByPaymentMethod,
-  filterByRange,
   filterByStatus,
   groupAndCount,
   safeDivide,
@@ -32,17 +28,14 @@ export const formatDate = (value: string): string =>
     year: "numeric",
   }).format(new Date(`${value}T00:00:00`));
 
-// FILTER: pipeline de filtros funcionales (estado, ciudad, pago, rango y busqueda).
+// FILTER: filtra órdenes por estado
 export const getFilteredOrders = (orders: Order[], filters: OrderFilters): Order[] => {
   const withStatus = filterByStatus(filters.status)(orders);
-  const withCity = filterByCity(filters.city)(withStatus);
-  const withPayment = filterByPaymentMethod(filters.paymentMethod)(withCity);
-  const withRange = filterByRange(filters.minTotal, filters.maxTotal)(withPayment);
   const query = filters.search.trim().toLowerCase();
 
   return query.length === 0
-    ? withRange
-    : withRange.filter((order) => {
+    ? withStatus
+    : withStatus.filter((order) => {
         const haystack = `${order.customer} ${order.city} ${order.id}`.toLowerCase();
         return haystack.includes(query);
       });
@@ -98,11 +91,11 @@ export const mapOrdersToRows = (
   taxPercentage: number
 ): OrderTableRow[] => {
   const withDiscount = applyDiscount(discountPercentage);
-  const withTax = applyTax(taxPercentage);
 
   return orders.map((order) => {
     const itemCount = order.items.reduce((accumulator, item) => accumulator + item.quantity, 0);
-    const discountedTotal = withTax(withDiscount(order.total));
+    const afterDiscount = withDiscount(order.total);
+    const discountedTotal = Number((afterDiscount * (1 + taxPercentage / 100)).toFixed(2));
 
     return {
       id: order.id,
