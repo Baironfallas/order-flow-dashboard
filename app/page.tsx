@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { DashboardHeader } from "@/components/DashboardHeader";
-import { FunctionalShowcase } from "@/components/FunctionalShowcase";
 import { MetricCard } from "@/components/MetricCard";
 import { OrderFilters } from "@/components/OrderFilters";
 import { OrderTable } from "@/components/OrderTable";
@@ -18,7 +17,6 @@ import {
   formatCurrency,
   getDashboardMetrics,
   getFilteredOrders,
-  getSalesByCategory,
   getSalesByStatus,
   mapOrdersToRows,
 } from "@/utils/order.helpers";
@@ -84,15 +82,6 @@ export default function Home() {
     () => getSalesByStatus(filteredOrders),
     [filteredOrders],
   );
-  const salesByCategory = useMemo(
-    () => getSalesByCategory(filteredOrders),
-    [filteredOrders],
-  );
-
-  const discountedPreview = useMemo(() => {
-    const sample = tableRows[0];
-    return sample ? formatCurrency(sample.discountedTotal) : "Sin datos";
-  }, [tableRows]);
 
   return (
     <div className="relative flex flex-1 justify-center px-4 py-10 sm:px-6 lg:px-8">
@@ -154,12 +143,7 @@ export default function Home() {
 
         <OrderTable rows={tableRows} />
 
-        <SalesSummary byStatus={salesByStatus} byCategory={salesByCategory} />
-
-        <FunctionalShowcase
-          visibleCount={tableRows.length}
-          discountedPreview={discountedPreview}
-        />
+        <SalesSummary byStatus={salesByStatus} />
       </main>
     </div>
   );

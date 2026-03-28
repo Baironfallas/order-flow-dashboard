@@ -3,7 +3,6 @@ import {
   Order,
   OrderFilters,
   OrderTableRow,
-  SalesByCategory,
   SalesByStatus,
 } from "@/types/order.types";
 import {
@@ -17,6 +16,7 @@ import {
   safeDivide,
 } from "@/utils/functional.helpers";
 
+// PURE FUNCTION: formatea montos para la UI sin modificar datos de entrada.
 export const formatCurrency = (value: number): string =>
   new Intl.NumberFormat("es-CR", {
     style: "currency",
@@ -24,6 +24,7 @@ export const formatCurrency = (value: number): string =>
     maximumFractionDigits: 0,
   }).format(value);
 
+// PURE FUNCTION: transforma fecha ISO a formato legible en espanol.
 export const formatDate = (value: string): string =>
   new Intl.DateTimeFormat("es-CR", {
     day: "2-digit",
@@ -31,6 +32,7 @@ export const formatDate = (value: string): string =>
     year: "numeric",
   }).format(new Date(`${value}T00:00:00`));
 
+// FILTER: pipeline de filtros funcionales (estado, ciudad, pago, rango y busqueda).
 export const getFilteredOrders = (orders: Order[], filters: OrderFilters): Order[] => {
   const withStatus = filterByStatus(filters.status)(orders);
   const withCity = filterByCity(filters.city)(withStatus);
@@ -46,6 +48,7 @@ export const getFilteredOrders = (orders: Order[], filters: OrderFilters): Order
       });
 };
 
+// REDUCE + FILTER + MAP: calcula metricas globales para toma de decisiones.
 export const getDashboardMetrics = (orders: Order[]): DashboardMetrics => {
   const totalSales = orders.reduce((accumulator, order) => accumulator + order.total, 0);
 
@@ -66,6 +69,7 @@ export const getDashboardMetrics = (orders: Order[]): DashboardMetrics => {
   };
 };
 
+// REDUCE + MAP: resume cantidad y total vendido por estado.
 export const getSalesByStatus = (orders: Order[]): SalesByStatus[] => {
   const statusTotals = orders.reduce<Record<string, { count: number; total: number }>>(
     (accumulator, order) => ({
@@ -87,29 +91,7 @@ export const getSalesByStatus = (orders: Order[]): SalesByStatus[] => {
     .sort((first, second) => second.total - first.total);
 };
 
-export const getSalesByCategory = (orders: Order[]): SalesByCategory[] => {
-  const categoryTotals = orders
-    .flatMap((order) => order.items)
-    .reduce<Record<string, { total: number; units: number }>>(
-      (accumulator, item) => ({
-        ...accumulator,
-        [item.category]: {
-          total: (accumulator[item.category]?.total ?? 0) + item.price * item.quantity,
-          units: (accumulator[item.category]?.units ?? 0) + item.quantity,
-        },
-      }),
-      {}
-    );
-
-  return Object.entries(categoryTotals)
-    .map(([category, values]) => ({
-      category,
-      total: values.total,
-      units: values.units,
-    }))
-    .sort((first, second) => second.total - first.total);
-};
-
+// MAP + REDUCE + CURRYING: adapta pedidos a filas de tabla con descuento e impuesto.
 export const mapOrdersToRows = (
   orders: Order[],
   discountPercentage: number,
