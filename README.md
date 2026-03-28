@@ -16,7 +16,6 @@ OrderFlow Dashboard es una aplicación construida con **Next.js 16** y **React 1
 - **Visualizar** métricas agregadas (ingresos totales, ticket promedio, ciudad con más ventas)
 - **Identificar** patrones de venta para optimizar el negocio
 
-Es una aplicación de propósito educativo que demuestra buenas prácticas en desarrollo web moderno.
 
 ---
 
