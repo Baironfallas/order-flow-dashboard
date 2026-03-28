@@ -1,0 +1,150 @@
+[
+  {
+    "id": 1001,
+    "customer": "Juan Perez",
+    "status": "Pagado",
+    "date": "2026-03-20",
+    "paymentMethod": "Tarjeta",
+    "city": "Nicoya",
+    "total": 1240,
+    "items": [
+      { "name": "Laptop Pro 14", "category": "Tecnologia", "price": 1200, "quantity": 1 },
+      { "name": "Mouse Inalambrico", "category": "Tecnologia", "price": 40, "quantity": 1 }
+    ]
+  },
+  {
+    "id": 1002,
+    "customer": "Maria Solis",
+    "status": "Pendiente",
+    "date": "2026-03-21",
+    "paymentMethod": "SINPE",
+    "city": "San Jose",
+    "total": 189,
+    "items": [
+      { "name": "Audifonos", "category": "Tecnologia", "price": 89, "quantity": 1 },
+      { "name": "Cargador USB-C", "category": "Accesorios", "price": 50, "quantity": 2 }
+    ]
+  },
+  {
+    "id": 1003,
+    "customer": "Carlos Rojas",
+    "status": "Enviado",
+    "date": "2026-03-21",
+    "paymentMethod": "Transferencia",
+    "city": "Alajuela",
+    "total": 355,
+    "items": [
+      { "name": "Silla Ergonomica", "category": "Oficina", "price": 355, "quantity": 1 }
+    ]
+  },
+  {
+    "id": 1004,
+    "customer": "Laura Vega",
+    "status": "Pagado",
+    "date": "2026-03-22",
+    "paymentMethod": "Tarjeta",
+    "city": "Heredia",
+    "total": 840,
+    "items": [
+      { "name": "Monitor 27", "category": "Tecnologia", "price": 420, "quantity": 2 }
+    ]
+  },
+  {
+    "id": 1005,
+    "customer": "Daniel Chaves",
+    "status": "Cancelado",
+    "date": "2026-03-22",
+    "paymentMethod": "Efectivo",
+    "city": "Cartago",
+    "total": 112,
+    "items": [
+      { "name": "Teclado Mecanico", "category": "Tecnologia", "price": 112, "quantity": 1 }
+    ]
+  },
+  {
+    "id": 1006,
+    "customer": "Ana Mendez",
+    "status": "Pagado",
+    "date": "2026-03-23",
+    "paymentMethod": "Transferencia",
+    "city": "San Jose",
+    "total": 560,
+    "items": [
+      { "name": "Webcam 4K", "category": "Tecnologia", "price": 140, "quantity": 2 },
+      { "name": "Lampara Escritorio", "category": "Oficina", "price": 70, "quantity": 4 }
+    ]
+  },
+  {
+    "id": 1007,
+    "customer": "Jose Arce",
+    "status": "Pendiente",
+    "date": "2026-03-23",
+    "paymentMethod": "SINPE",
+    "city": "Puntarenas",
+    "total": 465,
+    "items": [
+      { "name": "Impresora", "category": "Oficina", "price": 300, "quantity": 1 },
+      { "name": "Tinta Negra", "category": "Oficina", "price": 55, "quantity": 3 }
+    ]
+  },
+  {
+    "id": 1008,
+    "customer": "Sofia Navas",
+    "status": "Pagado",
+    "date": "2026-03-24",
+    "paymentMethod": "Tarjeta",
+    "city": "Nicoya",
+    "total": 129,
+    "items": [
+      { "name": "Router Mesh", "category": "Tecnologia", "price": 129, "quantity": 1 }
+    ]
+  },
+  {
+    "id": 1009,
+    "customer": "Gabriel Mora",
+    "status": "Enviado",
+    "date": "2026-03-24",
+    "paymentMethod": "Transferencia",
+    "city": "Limon",
+    "total": 920,
+    "items": [
+      { "name": "Tablet Pro", "category": "Tecnologia", "price": 460, "quantity": 2 }
+    ]
+  },
+  {
+    "id": 1010,
+    "customer": "Valeria Salazar",
+    "status": "Pagado",
+    "date": "2026-03-25",
+    "paymentMethod": "Tarjeta",
+    "city": "San Jose",
+    "total": 278,
+    "items": [
+      { "name": "Disco SSD", "category": "Tecnologia", "price": 139, "quantity": 2 }
+    ]
+  },
+  {
+    "id": 1011,
+    "customer": "Miguel Brenes",
+    "status": "Pendiente",
+    "date": "2026-03-25",
+    "paymentMethod": "Efectivo",
+    "city": "Heredia",
+    "total": 330,
+    "items": [
+      { "name": "Escritorio Modular", "category": "Oficina", "price": 330, "quantity": 1 }
+    ]
+  },
+  {
+    "id": 1012,
+    "customer": "Isabel Roman",
+    "status": "Pagado",
+    "date": "2026-03-26",
+    "paymentMethod": "SINPE",
+    "city": "Alajuela",
+    "total": 615,
+    "items": [
+      { "name": "Smartwatch", "category": "Tecnologia", "price": 205, "quantity": 3 }
+    ]
+  }
+]
