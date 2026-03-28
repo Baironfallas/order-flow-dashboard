@@ -33,12 +33,18 @@ export const getFilteredOrders = (orders: Order[], filters: OrderFilters): Order
   const withStatus = filterByStatus(filters.status)(orders);
   const query = filters.search.trim().toLowerCase();
 
-  return query.length === 0
-    ? withStatus
-    : withStatus.filter((order) => {
-        const haystack = `${order.customer} ${order.city} ${order.id}`.toLowerCase();
-        return haystack.includes(query);
-      });
+  return withStatus
+    .filter((order) => {
+      if (query.length === 0) return true;
+      const haystack = `${order.customer} ${order.city} ${order.id}`.toLowerCase();
+      return haystack.includes(query);
+    })
+    .filter((order) => filters.city === "Todos" || order.city === filters.city)
+    .filter(
+      (order) =>
+        filters.paymentMethod === "Todos" || order.paymentMethod === filters.paymentMethod,
+    )
+    .filter((order) => order.total >= filters.minTotal && order.total <= filters.maxTotal);
 };
 
 // REDUCE + FILTER + MAP: calcula metricas globales para toma de decisiones.
